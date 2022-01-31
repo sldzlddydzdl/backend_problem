@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+ jpa:
+   hibernate:
+     ddl-auto: update
+   show-sql: true
+   properties:
+     hibernate:
+       format_sql : true
+ datasource:
+   driver-class-name: org.mariadb.jdbc.Driver
+   url: jdbc:mariadb://211.226.209.40:3306/JariTalk?serverTimezone=Asia/Seoul&characterEncoding=utf-8
+   username: dong
+   password: pianist88!!

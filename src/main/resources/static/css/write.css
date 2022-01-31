@@ -1,0 +1,50 @@
+@charset "utf-8";
+h1{
+    text-align: center;
+}
+#writeForm{
+    margin-left: 750px;
+    margin-top: 80px;
+}
+.inputTitle{
+    width: 450px;
+    height: 24px;
+}
+.inputContent{
+    width: 450px;
+}
+.upload{
+    margin-left: 304px;
+    width: 150px;
+    height: 30px;
+    background-color: black;
+    color: white;
+    margin-top: 30px;
+}
+.upload:hover{
+    background-color: green;
+}
+.p2{
+    margin-top: 35px;
+}
+.btnDiv{
+    text-align: right;
+}
+.logoutBtn{
+    width: 100px;
+    height: 30px;
+    background-color: blue;
+    color: white;
+}
+.logoutBtn:hover{
+    background-color: black;
+}
+.boardBtn{
+    width: 100px;
+    height: 30px;
+    background-color: red;
+    color: white;
+}
+.boardBtn:hover{
+    background-color: black;
+}

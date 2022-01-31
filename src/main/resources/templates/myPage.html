@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+    <link rel="stylesheet" href="/css/myPage.css">
+</head>
+<body>
+  <h1>마이페이지</h1>
+  <hr>
+  <div class="btnDiv">
+    <button class="logoutBtn">로그아웃</button>
+    <button class="goBoardBtn">게시판</button>
+  </div>
+  <sapn class="amountSpan">내가 좋아요 누른 게시글 총 수 : &nbsp [[${amountLike}]] 개</sapn>
+  <div class="tableDiv">
+    <table>
+      <thead>
+      <tr>
+        <th scope="col">번호</th>
+        <th scope="col">제목</th>
+        <th scope="col">작성자</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr th:each="likeBoardDto:${result.dtoList}">
+        <th scope="row">
+          <a th:href="@{/board/read(id = ${likeBoardDto.getBoard().getId()})}" th:text="(${result.page}-1)*${result.size}+${likeBoardDtoStat.count}"  class="customLink">
+          </a>
+        </th>
+        <td><a th:href="@{/board/read(id = ${likeBoardDto.getBoard().getId()})}" th:text="${likeBoardDto.getBoard().getTitle()}"  class="customLink"></a></td>
+        <td>[[${likeBoardDto.getWriterId()}]]</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ul class="pagination h-100 justify-content-center align-items-center">
+
+    <li class="page-item" th:if="${result.prev}">
+      <a class="page-link" th:href="@{/myPage(page= ${result.start-1} , userId=${userId})}" tabindex="-1">
+        Previous
+      </a>
+    </li>
+
+    <li th:class=" 'page-item' + ${result.page == page?' active':''}" th:each="page:${result.pageList}">
+      <a class="page-link" th:href="@{/myPage(page = ${page} , userId=${userId})}">
+        [[${page}]]
+      </a>
+    </li>
+
+    <li class="page-item" th:if="${result.next}">
+      <a class="page-link" th:href="@{/myPage(page = ${result.end + 1} , userId=${userId})}">
+        Next
+      </a>
+    </li>
+  </ul>
+  <script type="text/javascript" src="/js/myPage.js"></script>
+</body>
+</html>

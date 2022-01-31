@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/write.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+</head>
+<h1>글쓰기</h1>
+<hr>
+<div class="btnDiv">
+    <button class="logoutBtn">로그아웃</button>
+    <button class="boardBtn">게시판</button>
+</div>
+<body>
+    <form action="/board/register" method="post" id="writeForm">
+    <p>제목</p>
+    <input type="text" name="title" placeholder="제목을 입력해주세요" class="inputTitle">
+    <p class="p2">내용</p>
+    <textarea name="content" cols="30" rows="10" placeholder="글을 입력해주세요" class="inputContent"></textarea>
+    <br>
+    <button class="upload">등록하기</button>
+    </form>
+<input type="hidden" th:value="${user.id}" class="userId">
+<script type="text/javascript" src="/js/write.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/boardHistory.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+</head>
+<body>
+  <h1>히스토리 페이지</h1>
+  <hr>
+
+<div class="btnDiv">
+  <button class="leaveMemberBtn">게시판</button>
+</div>
+
+<div class="tableDiv">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">번호</th>
+        <th scope="col">내용</th>
+        <th scope="col">해당 시간</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="history:${result.dtoList}">
+        <th scope="row">
+          [[${historyStat.count}]]
+        </th>
+        <td>[[${history.historyContent}]]</td>
+        <td>[[${#temporals.format(history.regDate , 'yyyy-MM-dd : HH:mm:ss')}]]</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  <ul class="pagination h-100 justify-content-center align-items-center">
+
+
+    <li class="page-item" th:if="${result.prev}">
+      <a class="page-link" th:href="@{/boardHistory(page= ${result.start-1})}" tabindex="-1">
+        Previous
+      </a>
+    </li>
+
+    <li th:class=" 'page-item' + ${result.page == page?' active':''}" th:each="page:${result.pageList}">
+      <a class="page-link" th:href="@{/boardHistory/(page = ${page})}">
+        [[${page}]]
+      </a>
+    </li>
+
+    <li class="page-item" th:if="${result.next}">
+      <a class="page-link" th:href="@{/boardHistory(page = ${result.end + 1})}">
+        Next
+      </a>
+    </li>
+
+  </ul>
+<script type="text/javascript" src="/js/boardHistory.js"></script>
+
+</body>
+</html>

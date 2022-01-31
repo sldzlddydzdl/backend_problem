@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/likePeople.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+</head>
+<h1>좋아요 누른 사람들</h1>
+<hr>
+<div class="btnDiv">
+    <button class="logoutBtn">로그아웃</button>
+    <button class="backBtn">뒤로가기</button>
+</div>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">번호</th>
+            <th scope="col">좋아요 누른 사람</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="like:${result.dtoList}">
+            <th scope="row" th:text="(${result.page}-1)*${result.size}+${likeStat.count}"></th>
+            <td>[[${like.nickName}]]</td>
+        </tr>
+        </tbody>
+    </table>
+
+<ul class="pagination h-100 justify-content-center align-items-center">
+
+    <li class="page-item" th:if="${result.prev}">
+        <a class="page-link" th:href="@{/board/read/likePeople/{id}(id=${board.getId()} , page= ${result.start-1})}" tabindex="-1">
+            Previous
+        </a>
+    </li>
+
+    <li th:class=" 'page-item' + ${result.page == page?' active':''}" th:each="page:${result.pageList}">
+        <a class="page-link" th:href="@{/board/read/likePeople/{id}(id=${board.getId()} , page = ${page})}">
+            [[${page}]]
+        </a>
+    </li>
+
+    <li class="page-item" th:if="${result.next}">
+        <a class="page-link" th:href="@{/board/read/likePeople/{id}/(id = ${board.getId()}, page = ${result.end + 1})}">
+            Next
+        </a>
+    </li>
+
+</ul>
+<input type="hidden" th:value="${board.id}" class="boardId">
+<script type="text/javascript" src="/js/likePeople.js"></script>
+</body>
+</html>

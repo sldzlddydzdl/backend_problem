@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/read.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+</head>
+<h1>글쓰기</h1>
+<hr>
+<div class="btnDiv">
+  <button class="logoutBtn">로그아웃</button>
+  <button class="boardBtn">게시판</button>
+</div>
+<body>
+<div class="divForm">
+  <p>제목</p>
+  <input type="text" name="title" placeholder="제목을 입력해주세요" class="inputTitle" th:value="${board.getTitle()}" readonly>
+  <p class="p2">내용</p>
+  <textarea name="content" cols="30" rows="10" placeholder="글을 입력해주세요" class="inputContent" th:text="${board.getContent()}" readonly></textarea>
+  <br>
+  <button class="updateBtn">수정하기</button>
+  <button class="deleteBtn">삭제하기</button>
+  <button class="likePeopleBtn">좋아요 누른 사람들</button>
+</div>
+<p class="p1 inlineP">댓글 : &nbsp</p><p class="p3 inlineP" th:text="${replyCount}"></p><p class="p3 inlineP">&nbsp개</p>
+<table>
+    <thead>
+        <tr>
+            <th scope="col">번호</th>
+            <th scope="col" class="col2">내용</th>
+            <th scope="col">작성자</th>
+            <th scope="col">등록날짜</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="reply:${result.dtoList}">
+            <th scope="row" th:text="(${result.page}-1)*${result.size}+${replyStat.count}"></th>
+            <td>[[${reply.content}]]</td>
+            <td>[[${reply.replyer}]]</td>
+            <td>[[${#temporals.format(reply.regDate , 'yyyy-MM-dd')}]]</td>
+        </tr>
+    </tbody>
+</table>
+
+<span class="span1">댓글입력 : </span><input type="text" class="replyInput" placeholder="댓글을입력해주세요">
+<button id="replyInputBtn">댓글등록</button>
+<ul class="pagination h-100 justify-content-center align-items-center">
+
+
+    <li class="page-item" th:if="${result.prev}">
+        <a class="page-link" th:href="@{/board/read(id=${board.getId()} , page= ${result.start-1})}" tabindex="-1">
+            Previous
+        </a>
+    </li>
+
+    <li th:class=" 'page-item' + ${result.page == page?' active':''}" th:each="page:${result.pageList}">
+        <a class="page-link" th:href="@{/board/read/(id=${board.getId()} ,page = ${page})}">
+            [[${page}]]
+        </a>
+    </li>
+
+    <li class="page-item" th:if="${result.next}">
+        <a class="page-link" th:href="@{/board/read(id=${board.getId()} ,page = ${result.end + 1})}">
+            Next
+        </a>
+    </li>
+
+</ul>
+
+<input type="hidden" th:value="${board.getId()}" id="board">
+<input type="hidden" th:value="${user.getId()}" id="user">
+<input type="hidden" th:value="${user.getAccountType()}" id="userAccountType">
+<input type="hidden" th:value="${board.getUser().getId()}" id="boardAndUserRelation">
+
+<div class="modal">
+    <div class="modal_body"><img src="/img/backIcon.png" alt="뒤로가기" class="backImg">
+        <div class="modal_div">
+        <p>제목</p>
+        <input type="text" name="title" placeholder="제목을 입력해주세요" class="Modal_inputTitle" th:value="${board.getTitle()}" >
+        <p class="p2">내용</p>
+        <textarea name="content" cols="30" rows="10" placeholder="글을 입력해주세요" class="Modal_inputContent" th:text="${board.getContent()}" ></textarea>
+        <br>
+        <button class="updateBtnModal">수정하기</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/read.js"></script>
+</body>
+
+</html>

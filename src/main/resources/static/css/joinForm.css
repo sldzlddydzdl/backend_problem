@@ -1,0 +1,31 @@
+@charset "utf-8";
+.formDiv{
+    margin-top: 100px;
+    text-align: center;
+}
+.registerBtn{
+    margin-top: 8px;
+    width: 256px;
+    height: 30px;
+    background-color: darkgoldenrod;
+    color: white;
+    font-weight: bold;
+}
+.registerBtn:hover{
+    background-color: red;
+}
+.goLoginFormBtn{
+    width: 100px;
+    height: 30px;
+    background-color: coral;
+    color: white;
+}
+.goLoginFormBtn:hover{
+    background-color: black;
+}
+.btnDiv{
+    text-align: right;
+}
+h1{
+    text-align: center;
+}

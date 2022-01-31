@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+body{
+    text-align: center;
+    margin-top : 410px;
+}
+.goBoardBtn{
+    width: 200px;
+    height: 30px;
+    background-color: chocolate;
+    color: white;
+}
+.goBoardBtn:hover{
+    background-color: black;
+}

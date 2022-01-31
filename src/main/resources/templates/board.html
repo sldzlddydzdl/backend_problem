@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+    <link rel="stylesheet" href="/css/board.css">
+</head>
+<body>
+    <h1>게시판</h1>
+    <hr>
+<div class="btnDiv">
+    <button class="goHistory">게시판 History</button>
+    <button class="leaveMemberBtn">회원탈퇴</button>
+    <button class="logoutBtn">로그아웃</button>
+    <button class="myPageBtn">마이페이지</button>
+    <button class="writeBtn">글쓰기</button>
+<input type="hidden" th:value="${accountType}" id="accountType">
+</div>
+<div class="tableDiv">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">번호</th>
+                <th scope="col">제목</th>
+                <th scope="col">작성자</th>
+                <th scope="col">등록 날짜</th>
+                <th scope="col">수정 날짜</th>
+                <th scope="col">좋아요</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="boardDto:${result.dtoList}">
+                <th scope="row">
+                    <a th:href="@{/board/read(id = ${boardDto.getId()})}" th:text="(${result.page}-1)*${result.size}+${boardDtoStat.count}" class="customLink">
+                    </a>
+                </th>
+                <td>
+                    <a th:href="@{/board/read(id = ${boardDto.getId()})}" class="customLink">
+                        [[${boardDto.title}]] ---------------- [ <b th:text="${boardDto.replyCount}"></b> ]
+                    </a>
+                </td>
+                <td>[[${boardDto.writerId}]]</td>
+                <td>[[${#temporals.format(boardDto.regDate, 'yyyy-MM-dd : HH:mm:ss')}]]</td>
+                <td>[[${#temporals.format(boardDto.modDate, 'yyyy-MM-dd : HH:mm:ss')}]]</td>
+                <td><img src="/img/heartEmpty.png" th:id="heartIcon+${boardDto.getId()}" class="heartIcon">&nbsp;<sapn th:text="${boardDto.likeCount}" th:id="heartCount+${boardDto.getId()}" class="heartCount"></sapn></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+    <ul class="pagination h-100 justify-content-center align-items-center">
+
+
+        <li class="page-item" th:if="${result.prev}">
+            <a class="page-link" th:href="@{/board/list(page= ${result.start-1})}" tabindex="-1">
+                Previous
+            </a>
+        </li>
+
+        <li th:class=" 'page-item' + ${result.page == page?' active':''}" th:each="page:${result.pageList}">
+            <a class="page-link" th:href="@{/board/list(page = ${page})}">
+                [[${page}]]
+            </a>
+        </li>
+
+        <li class="page-item" th:if="${result.next}">
+            <a class="page-link" th:href="@{/board/list(page = ${result.end + 1})}">
+                Next
+            </a>
+        </li>
+
+    </ul>
+    <input type="hidden" th:value="${user.getId()}" id="userId">
+    <input type="hidden" th:value="${user.getAccountType()}" id="userAccountType">
+    <th:block th:each="like : ${likeList}">
+        <input type="hidden" th:value="${like.getBoard().getId()}" th:id="likeNum+${like.getId()}" name="likeName" class="likeNumbers">
+    </th:block>
+    <script type="text/javascript" src="/js/board.js"></script>
+</body>
+</html>
