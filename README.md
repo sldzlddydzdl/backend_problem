@@ -110,7 +110,12 @@ REALTOR ( 공인중개사 ) , LESSEE ( 임차인 ) , LESSOR ( 임대인 )
 ![image](https://user-images.githubusercontent.com/71972556/151946296-559c144e-d981-4a22-bd59-af173c55f7ad.png)
 
 
+# Spring Security 를 사용하여 권한과 로그인을 처리하였습니다.
 
+
+# 데이터베이스 구조 
+
+![image](https://user-images.githubusercontent.com/71972556/152015842-72580629-3b30-4fc3-beaa-58456df8adf0.png)
 
 
 
