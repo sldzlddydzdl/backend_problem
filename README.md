@@ -68,6 +68,53 @@ ex) 52.5.46.29:8080/loginForm
 ![image](https://user-images.githubusercontent.com/71972556/151940844-5d6b3bce-9153-4278-8dee-038225f943eb.png)
 
 
+### 게시글 상세 보기
+52.5.46.29:8080/board/read?id=boardId <br/>
+댓글과 좋아요 누른 사람들을 볼수 있고 현재 글이 자신이 쓴글이면 수정하기와 삭제를 할 수 있게 하였습니다.
+![image](https://user-images.githubusercontent.com/71972556/151943390-cc2c609e-69a3-490d-ba6d-f4f546ff8ee4.png)
+<br/>
+<br/>
+
+이 게시물에 좋아요 누른 사람들의 아이디( 공인중개사, 임대인, 임차인 , 일반유저 ) 를 보여줍니다.
+![image](https://user-images.githubusercontent.com/71972556/151943735-534e270d-2089-47fd-9230-620defdd5bf6.png)
+
+수정하기를 누르면 modal 창으로 글을 수정할 수 있게 해줍니다.
+![image](https://user-images.githubusercontent.com/71972556/151944203-eadf542d-0b7d-4b04-ba3d-28b20262fbbf.png)
+
+삭제하기를 누르면 삭제 여부를 확인한 후 삭제를 진행합니다. <br/>
+이 때 삭제하면 database 에 flag 를 이용하여 완전히 삭제하지는 않습니다.
+![image](https://user-images.githubusercontent.com/71972556/151944405-b00f0c5f-013f-4eaa-bcc4-00bac6d16117.png)
+
+게시글이 해당유저의 게시글이 아니면 수정하기와 삭제하기 버튼을 안보여줍니다.
+![image](https://user-images.githubusercontent.com/71972556/151944633-dbc6c8a0-9965-469d-aed6-84c2d2c04d2e.png)
+
+
+### 게시글 History 페이지 ( admin 유저만 접속가능 )
+##### id : admin 
+##### password : 1234
+
+게시판 History 버튼을 누르게되면 게시글 History 를 확인할수 있게됩니다.
+![image](https://user-images.githubusercontent.com/71972556/151944881-7fc236a9-c08d-4223-ab03-09c9d4a7f84c.png)
+
+###### 게시글 History 페이지 
+유저들이 게시글의 event 들을 기록합니다.
+1. 좋아요 누르기
+2. 좋아요 취소하기
+3. 글 등록
+4. 글 삭제
+5. 글 수정 <br/>
+![image](https://user-images.githubusercontent.com/71972556/151945102-dfffd39a-c672-450d-9171-02d2f7e11ae6.png)
+
+
+혹시나 admin 권한이없는 유저가 boardHistory 에 강제로 접속할려하면 custom 한 접근제한 페이지를 보여줍니다.
+![image](https://user-images.githubusercontent.com/71972556/151946296-559c144e-d981-4a22-bd59-af173c55f7ad.png)
+
+
+
+
+
+
+
 
 
 
